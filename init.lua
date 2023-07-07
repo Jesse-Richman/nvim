@@ -15,9 +15,10 @@ vim.g.mapleader = " "
 --require("lazy").setup("plugins")
 require("lazy").setup("plugins", {
  defaults = { lazy = true },
- checker = { enabled = true },
+ checker = { enabled = false },
  change_detection = {
   notify = false,
  },
+
 })
 

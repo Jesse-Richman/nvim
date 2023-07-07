@@ -23,8 +23,12 @@ return {
     keys = {
         { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
         { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Lsp Code Action" },
+        { "<leader>ch", vim.lsp.buf.signature_help, desc = "Lsp Signature Help" },
 
-        {"<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", mode = "n"},
+
+        {"<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+            mode = "n", desc = "Toggle breakpoint"},
         {"<leader>dc", "<cmd>lua require'dap'.continue()<cr>", mode = "n"},
         {"<leader>di", "<cmd>lua require'dap'.step_into()<cr>", mode = "n"},
         {"<leader>do", "<cmd>lua require'dap'.step_over()<cr>", mode = "n"},

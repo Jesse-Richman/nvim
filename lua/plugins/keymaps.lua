@@ -1,12 +1,3 @@
--- Shorten function name
-local keymap = vim.keymap.set
--- Silent keymap option
-local opts = { silent = true }
-
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -14,62 +5,54 @@ vim.g.mapleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+local wk = require("which-key")
+wk.register({
+  ["<leader>f"] = { name = "+file" },
+  ["<leader>c"] = { name = "+code" },
+  ["<leader>d"] = { name = "+debug" },
 
--- Normal --
-keymap("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
 
-keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", opts)
+  [";"] = { ":", "Enter command mode", silent=false },
+  ["<ESC>"] =  { "<cmd>nohlsearch<CR>", "Clear highlights" },
+  ["<leader>e"] = { ":Ex<CR>", "File Explorer" },
+  ["<C-f>"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "New tmux session"},
 
-keymap("n", "<leader>e", ":Ex<CR>", opts)
+  -- Better window navigation
+  ["<A-h>"] = { "<C-w>h", "Move window focus left" },
+  ["<A-j>"] = { "<C-w>j", "Move window focus down" },
+  ["<A-k>"] = { "<C-w>k", "Move window focus up" },
+  ["<A-l>"] = { "<C-w>l", "Move window focus right" },
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+  ["<C-d>"] = { "<C-d>zz", "Scroll down half a page and center" },
+  ["<C-u>"] = { "<C-u>zz", "Scroll up half a page and center" },
+  ["n"] = { "nzzzv", "Find next and center" },
+  ["N"] = { "Nzzzv", "Find previous and center" },
 
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
+  -- Resize with arrows
+  ["<C-Up>"] = { ":resize -2<CR>" },
+  ["<C-Down>"] = { ":resize +2<CR>" },
+  ["<C-Left>"] = { ":vertical resize -2<CR>" },
+  ["<C-Right>"] = { ":vertical resize +2<CR>" },
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+  -- better copy/paste
+  ["<leader>y"] = { "\"+y" },
+  ["<leader>Y"] = { "\"+Y" },
+  ["<leader>d"] = { "\"_d" },
+  ["<leader>s"] = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>" },
+})
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- visual mode
+wk.register({
+  ["p"] = {'"_dP'},
+  ["<leader>y"] = { "\"+y" },
+  ["<leader>d"] = { "\"_d" },
+  ["<"] = { "<gv" },
+  [">"] = { ">gv" },
+}, { mode="v"})
 
--- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
-
--- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
-
--- Better paste
-keymap("v", "p", '"_dP', opts)
-keymap("x", "<leader>p", "\"_dP", opts)
-keymap("n", "<leader>y", "\"+y", opts)
-keymap("v", "<leader>y", "\"+y", opts)
-keymap("n", "<leader>Y", "\"+Y", opts)
-
-keymap("n", "<leader>d", "\"_d", opts)
-keymap("v", "<leader>d", "\"_d", opts)
-
--- Insert --
-keymap("i", "<C-c>", "<ESC>", opts)
-
-keymap("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", opts)
-keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
-
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+-- visual block mode
+wk.register({
+  ["<leader>p"] = {"\"_dP"},
+}, { mode="x"})
 
 return {}

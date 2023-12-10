@@ -3,19 +3,7 @@ return {
     "nvim-lua/plenary.nvim",
     "kyazdani42/nvim-web-devicons",
 	"folke/neodev.nvim",
-    {
-        "folke/which-key.nvim",
-        lazy = false,
-        config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            require("which-key").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            })
-        end,
-    },
+
     {"numToStr/Comment.nvim",
         keys = {
             {"<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", mode = "n"},
@@ -28,6 +16,16 @@ return {
         keys = {
             {"<leader>u", ":UndotreeToggle<CR>", mode = "n"},
         },
+    },
+
+    {
+        "folke/which-key.nvim",
+        lazy = false,
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup({})
+        end,
     },
 
     -- search/replace in multiple files

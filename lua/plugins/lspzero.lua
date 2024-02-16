@@ -46,6 +46,35 @@ return {
             suggest_lsp_servers = true,
         })
 
+        require('mason').setup()
+        local handlers = {
+            function(server_name) -- optional default handler 
+                require('lspconfig')[server_name].setup {}
+            end,
+            ['html'] = function()
+                require('lspconfig')['html'].setup {
+                    filetypes = { 'html', 'templ' }
+                }
+            end,
+            ['htmx'] = function()
+                require('lspconfig')['htmx'].setup {
+                    filetypes = { 'html', 'templ' }
+                }
+            end,
+            ['gopls'] = function()
+                require('lspconfig')['gopls'].setup{
+                    settings = {
+                        completeUnimported = true,
+                        usePlaceholders = true,
+                        analyses = {
+                            unusedparams = true,
+                        },
+                    },
+                }
+            end,
+        }
+        require('mason-lspconfig').setup({ handlers = handlers })
+
         -- (Optional) Configure lua language server for neovim
         lsp.nvim_workspace()
 

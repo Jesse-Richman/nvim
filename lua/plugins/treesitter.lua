@@ -1,15 +1,20 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    config = function ()
-        require("nvim-treesitter").setup({
-            ensure_installed = { "help", "javascript", "lua", "markdown", "markdown_inline" },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-        })
+    event = { "BufReadPost", "BufNewFile" },
+    tag = "v0.9.2",
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = {
+        ensure_installed = { "lua" },
+
+        highlight = {
+            enable = true,
+            use_languagetree = true,
+        },
+
+        indent = { enable = true },
+    },
+    config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
     end,
 }

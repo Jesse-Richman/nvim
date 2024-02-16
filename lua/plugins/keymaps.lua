@@ -15,7 +15,8 @@ wk.register({
   [";"] = { ":", "Enter command mode", silent=false },
   ["<ESC>"] =  { "<cmd>nohlsearch<CR>", "Clear highlights" },
   ["<leader>e"] = { ":Ex<CR>", "File Explorer" },
-  ["<C-f>"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "New tmux session"},
+  ["<leader>t"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "New tmux session"},
+  ["<leader>cf"] = { vim.lsp.buf.format, "Format"},
 
   -- Better window navigation
   ["<A-h>"] = { "<C-w>h", "Move window focus left" },

@@ -17,7 +17,7 @@ wk.register({
   ["<leader>e"] = { ":Ex<CR>", "File Explorer" },
   ["<leader>t"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "New tmux session"},
   ["<leader>cf"] = { vim.lsp.buf.format, "Format"},
-  ["<leader>cr"] = { ":LspRestart", "Restart LSP"},
+  ["<leader>cr"] = { ":LspRestart<CR>", "Restart LSP"},
 
   -- Better window navigation
   ["<A-h>"] = { "<C-w>h", "Move window focus left" },

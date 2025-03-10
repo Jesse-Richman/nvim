@@ -72,6 +72,11 @@ return {
                     },
                 }
             end,
+            ['svelte'] = function()
+                require('lspconfig')['svelte'].setup{
+                    filetypes = {'svelte'}
+                }
+            end,
         }
         require('mason-lspconfig').setup({ handlers = handlers })
 

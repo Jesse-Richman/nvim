@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 --vim.opt.guicursor = ""
 vim.opt.mouse = "a"
 vim.opt.number = true
@@ -22,7 +25,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 -- vim.g.netrw_keepdir = 0
--- leader key is already mapped in the main init.lua file
 vim.filetype.add({ extension = { templ = "templ" } })
 -- vim.api.nvim_create_autocmd("BufEnter", { pattern = "*.templ", callback = function() vim.cmd("TSBufEnable highlight") end }) 
 return {}

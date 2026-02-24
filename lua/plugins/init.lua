@@ -49,7 +49,7 @@ return {
     {"kdheepak/lazygit.nvim",
         lazy = false,
         keys = {
-            {"<leader>gg", ":LazyGit<CR>", mode = "n" },
+            {"<leader>lg", ":LazyGit<CR>", mode = "n" },
         },
     },
 

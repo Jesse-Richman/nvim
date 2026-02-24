@@ -1,11 +1,23 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     event = { "BufReadPost", "BufNewFile" },
-    tag = "v0.9.2",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = {
-        ensure_installed = { "lua" },
+        ensure_installed = {
+            "bash",
+            "html",
+            "javascript",
+            "json",
+            "lua",
+            "markdown",
+            "python",
+            "query",
+            "tsx",
+            "typescript",
+            "vim",
+            "yaml",
+        },
 
         highlight = {
             enable = true,
